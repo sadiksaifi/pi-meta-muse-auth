@@ -1,0 +1,57 @@
+{
+  "name": "pi-meta-muse-auth",
+  "version": "0.1.0",
+  "description": "Meta Muse Code subscription authentication and Muse Spark models for Pi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadiksaifi/pi-meta-muse-auth.git"
+  },
+  "homepage": "https://github.com/sadiksaifi/pi-meta-muse-auth#readme",
+  "bugs": {
+    "url": "https://github.com/sadiksaifi/pi-meta-muse-auth/issues"
+  },
+  "type": "module",
+  "author": "Sadik Saifi",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "meta",
+    "muse-code",
+    "muse-spark",
+    "oauth"
+  ],
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test",
+    "pack:dry": "npm pack --dry-run",
+    "prepublishOnly": "npm run check"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.85.1",
+    "@earendil-works/pi-coding-agent": "^0.85.1",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  }
+}
