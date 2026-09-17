@@ -1,6 +1,6 @@
 {
   "name": "pi-meta-muse-auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Meta Muse Code subscription authentication and Muse Spark models for Pi",
   "repository": {
     "type": "git",
