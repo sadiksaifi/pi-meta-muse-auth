@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { getSupportedThinkingLevels } from "@earendil-works/pi-ai";
 import { openAIResponsesApi } from "@earendil-works/pi-ai/compat";
 
 import {
@@ -87,6 +88,14 @@ test("fallback models expose only known reasoning variants", () => {
 	assert.equal(spark12?.thinkingLevelMap.xhigh, "xhigh");
 	assert.equal(spark12?.thinkingLevelMap.max, null);
 	assert.equal(spark12?.thinkingLevelMap.off, null);
+});
+
+test("falls back when Muse Code metadata has no recognized reasoning variants", () => {
+	const [model] = parseMuseModels({
+		data: [{ id: "muse-spark-1.3", metadata: { "muse-code": { variants: {} } } }],
+	});
+
+	assert.deepEqual(getSupportedThinkingLevels(model!), ["minimal", "low", "medium", "high", "xhigh", "max"]);
 });
 
 test("Muse requests use the client identity required for max effort", async () => {

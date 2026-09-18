@@ -83,13 +83,15 @@ function thinkingLevelMap(id: string, metadata?: Record<string, unknown>): Recor
 		xhigh: null,
 		max: null,
 	};
+	let recognizedVariant = false;
 	for (const level of ["minimal", "low", "medium", "high", "xhigh", "max"]) {
 		const variant = metadata.variants[level];
 		if (isRecord(variant) && typeof variant.reasoningEffort === "string" && variant.reasoningEffort) {
 			result[level] = variant.reasoningEffort;
+			recognizedVariant = true;
 		}
 	}
-	return result;
+	return recognizedVariant ? result : fallbackThinkingLevelMap(id);
 }
 
 function modelInput(metadata?: Record<string, unknown>): Array<"text" | "image"> {
