@@ -135,6 +135,7 @@ test("fetches the authenticated Meta model catalog", async () => {
 	assert.equal(request?.url, MODELS_URL);
 	assert.equal(request?.init?.method, "GET");
 	assert.equal(new Headers(request?.init?.headers).get("authorization"), "Bearer model-api-key");
+	assert.equal(new Headers(request?.init?.headers).get("user-agent"), MUSE_USER_AGENT);
 	assert.equal(new Headers(request?.init?.headers).get("x-api-version"), "1.0.0");
 	assert.deepEqual(models.map((model) => model.id), ["muse-spark-1.3"]);
 });
